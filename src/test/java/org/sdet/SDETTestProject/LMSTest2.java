@@ -36,7 +36,7 @@ public class LMSTest2 implements BaseHelper{
 
 	@BeforeTest
 	public void openBrowser() {
-		System.setProperty("webdriver.chrome.driver", "C:\\SDETSeleniumproject\\SDETTestProject\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "/var/lib/jenkins/workspace/Freestyle - Arnab/ws/chromedriver.exe");
 		chromedriver.get(URL);
 	}
 

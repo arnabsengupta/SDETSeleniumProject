@@ -23,6 +23,7 @@ public class LMSTest1 implements BaseHelper{
 
 	@BeforeTest
 	public void openBrowser() {
+		System.setProperty("webdriver.chrome.driver", "C:\\SDETSeleniumproject\\SDETTestProject\\chromedriver.exe");
 		chromedriver.navigate().to(URL);
 
 	}

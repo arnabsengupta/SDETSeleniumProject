@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test thread-count="5" name="Default test(failed)">
+    <classes>
+      <class name="org.sdet.SDETTestProject.LMSTest2">
+        <methods>
+          <include name="navigateToMyAccountAndVerifyPage"/>
+          <include name="navigateToContactUsAndCompleteForm"/>
+          <include name="closeBrowser"/>
+          <include name="openBrowser"/>
+          <include name="navigateToCourseAndMarkComplete"/>
+          <include name="verifyLoggedIn"/>
+        </methods>
+      </class> <!-- org.sdet.SDETTestProject.LMSTest2 -->
+      <class name="org.sdet.SDETTestProject.LMSTest1">
+        <methods>
+          <include name="verifyWebsiteTitle"/>
+          <include name="verifyTitleFirstInfoBox"/>
+          <include name="closeBrowser"/>
+          <include name="openBrowser"/>
+          <include name="verifyWebsiteHeading"/>
+        </methods>
+      </class> <!-- org.sdet.SDETTestProject.LMSTest1 -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

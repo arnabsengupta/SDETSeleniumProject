@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="9" passed="9">
+  <reporter-output>
+  </reporter-output>
+  <suite name="softwaretestingmaterial" duration-ms="19659" started-at="2020-10-15T15:26:13 IST" finished-at="2020-10-15T15:26:33 IST">
+    <groups>
+    </groups>
+    <test name="testngTest" duration-ms="19659" started-at="2020-10-15T15:26:13 IST" finished-at="2020-10-15T15:26:33 IST">
+      <class name="org.sdet.SDETTestProject.LMSTest2">
+        <test-method status="PASS" signature="openBrowser()[pri:0, instance:org.sdet.SDETTestProject.LMSTest2@1e6d1014]" name="openBrowser" is-config="true" duration-ms="1001" started-at="2020-10-15T15:26:21 IST" finished-at="2020-10-15T15:26:22 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method status="PASS" signature="navigateAndverifyNumberOfCourses()[pri:0, instance:org.sdet.SDETTestProject.LMSTest2@1e6d1014]" name="navigateAndverifyNumberOfCourses" duration-ms="857" started-at="2020-10-15T15:26:22 IST" finished-at="2020-10-15T15:26:23 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- navigateAndverifyNumberOfCourses -->
+        <test-method status="PASS" signature="verifyLoggedIn()[pri:0, instance:org.sdet.SDETTestProject.LMSTest2@1e6d1014]" name="verifyLoggedIn" duration-ms="3427" started-at="2020-10-15T15:26:23 IST" finished-at="2020-10-15T15:26:27 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyLoggedIn -->
+        <test-method status="PASS" signature="navigateToMyAccountAndVerifyPage()[pri:0, instance:org.sdet.SDETTestProject.LMSTest2@1e6d1014]" name="navigateToMyAccountAndVerifyPage" duration-ms="818" started-at="2020-10-15T15:26:27 IST" depends-on-methods="org.sdet.SDETTestProject.LMSTest2.verifyLoggedIn" finished-at="2020-10-15T15:26:27 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- navigateToMyAccountAndVerifyPage -->
+        <test-method status="PASS" signature="navigateToCourseAndMarkComplete()[pri:0, instance:org.sdet.SDETTestProject.LMSTest2@1e6d1014]" name="navigateToCourseAndMarkComplete" duration-ms="952" started-at="2020-10-15T15:26:27 IST" depends-on-methods="org.sdet.SDETTestProject.LMSTest2.navigateToMyAccountAndVerifyPage" finished-at="2020-10-15T15:26:28 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- navigateToCourseAndMarkComplete -->
+        <test-method status="PASS" signature="navigateToContactUsAndCompleteForm()[pri:0, instance:org.sdet.SDETTestProject.LMSTest2@1e6d1014]" name="navigateToContactUsAndCompleteForm" duration-ms="3362" started-at="2020-10-15T15:26:28 IST" depends-on-methods="org.sdet.SDETTestProject.LMSTest2.navigateToCourseAndMarkComplete" finished-at="2020-10-15T15:26:32 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- navigateToContactUsAndCompleteForm -->
+        <test-method status="PASS" signature="closeBrowser()[pri:0, instance:org.sdet.SDETTestProject.LMSTest2@1e6d1014]" name="closeBrowser" is-config="true" duration-ms="719" started-at="2020-10-15T15:26:32 IST" finished-at="2020-10-15T15:26:33 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- org.sdet.SDETTestProject.LMSTest2 -->
+      <class name="org.sdet.SDETTestProject.LMSTest1">
+        <test-method status="PASS" signature="openBrowser()[pri:0, instance:org.sdet.SDETTestProject.LMSTest1@4f063c0a]" name="openBrowser" is-config="true" duration-ms="7705" started-at="2020-10-15T15:26:13 IST" finished-at="2020-10-15T15:26:21 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method status="PASS" signature="verifyTitleFirstInfoBox()[pri:0, instance:org.sdet.SDETTestProject.LMSTest1@4f063c0a]" name="verifyTitleFirstInfoBox" duration-ms="117" started-at="2020-10-15T15:26:22 IST" finished-at="2020-10-15T15:26:22 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyTitleFirstInfoBox -->
+        <test-method status="PASS" signature="verifyTitleSecondMostPopularCourse()[pri:0, instance:org.sdet.SDETTestProject.LMSTest1@4f063c0a]" name="verifyTitleSecondMostPopularCourse" duration-ms="230" started-at="2020-10-15T15:26:22 IST" finished-at="2020-10-15T15:26:22 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyTitleSecondMostPopularCourse -->
+        <test-method status="PASS" signature="verifyWebsiteHeading()[pri:0, instance:org.sdet.SDETTestProject.LMSTest1@4f063c0a]" name="verifyWebsiteHeading" duration-ms="99" started-at="2020-10-15T15:26:22 IST" finished-at="2020-10-15T15:26:22 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyWebsiteHeading -->
+        <test-method status="PASS" signature="verifyWebsiteTitle()[pri:0, instance:org.sdet.SDETTestProject.LMSTest1@4f063c0a]" name="verifyWebsiteTitle" duration-ms="29" started-at="2020-10-15T15:26:22 IST" finished-at="2020-10-15T15:26:22 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyWebsiteTitle -->
+        <test-method status="PASS" signature="closeBrowser()[pri:0, instance:org.sdet.SDETTestProject.LMSTest1@4f063c0a]" name="closeBrowser" is-config="true" duration-ms="255" started-at="2020-10-15T15:26:32 IST" finished-at="2020-10-15T15:26:32 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- org.sdet.SDETTestProject.LMSTest1 -->
+    </test> <!-- testngTest -->
+  </suite> <!-- softwaretestingmaterial -->
+</testng-results>

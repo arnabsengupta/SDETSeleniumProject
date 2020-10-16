@@ -3,7 +3,11 @@ package org.sdet.SDETTestProject;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxBinary;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -15,6 +19,10 @@ import helpers.BaseHelper;
 public class LMSTest2 implements BaseHelper{
 
 	String toMatch;
+
+	public WebDriver driver;
+	public FirefoxBinary firefoxBinary;
+	public FirefoxOptions firefoxOptions;;
 
 	//Locators
 	public static final String LOC_MYACCOUNTTAB = "ul#primary-menu li[id^='menu-item']:nth-child(5)";
@@ -36,8 +44,17 @@ public class LMSTest2 implements BaseHelper{
 
 	@BeforeTest
 	public void openBrowser() {
-		System.setProperty("webdriver.chrome.driver", "/var/lib/jenkins/workspace/Freestyle - Arnab/ws/chromedriver.exe");
-		chromedriver.get(URL);
+		/*
+		 * System.setProperty("webdriver.chrome.driver",
+		 * "/var/lib/jenkins/workspace/Freestyle - Arnab/ws/driver.exe");
+		 * driver.get(URL);
+		 */
+		// Create a new FirefoxDriver. All our test classes will use this.
+		firefoxBinary = new FirefoxBinary();
+		firefoxBinary.addCommandLineOptions("--headless");
+		firefoxOptions = new FirefoxOptions();
+		firefoxOptions.setBinary(firefoxBinary);
+		driver = new FirefoxDriver(firefoxOptions);
 	}
 
 
@@ -48,9 +65,9 @@ public class LMSTest2 implements BaseHelper{
 		toMatch = "My Account";
 
 		//Navigate to the “My Account” page on the site
-		chromedriver.findElement(By.cssSelector(LOC_MYACCOUNTTAB)).click();
-		System.out.println(chromedriver.getTitle());
-		String pageTitle = chromedriver.getTitle();
+		driver.findElement(By.cssSelector(LOC_MYACCOUNTTAB)).click();
+		System.out.println(driver.getTitle());
+		String pageTitle = driver.getTitle();
 
 		//Read the page title and verify that you are on the correct page.
 		Boolean result = pageTitle.contains(toMatch)?true:false;
@@ -63,16 +80,16 @@ public class LMSTest2 implements BaseHelper{
 	//Goal: Open the website and log-in using the provided credentials.
 	@Test
 	public void verifyLoggedIn() {
-		chromedriver.findElement(By.cssSelector(LOC_MYACCOUNTTAB)).click();
+		driver.findElement(By.cssSelector(LOC_MYACCOUNTTAB)).click();
 
 		//Log-in using the provided credentials.
-		chromedriver.findElement(By.cssSelector(LOC_LOGINBTN)).click();
-		chromedriver.findElement(By.cssSelector(LOC_USERNAME)).sendKeys("root");
-		chromedriver.findElement(By.cssSelector(LOC_PASSWORD)).sendKeys("pa$$w0rd");
-		chromedriver.findElement(By.cssSelector(LOC_SUBMITBTN)).click();
+		driver.findElement(By.cssSelector(LOC_LOGINBTN)).click();
+		driver.findElement(By.cssSelector(LOC_USERNAME)).sendKeys("root");
+		driver.findElement(By.cssSelector(LOC_PASSWORD)).sendKeys("pa$$w0rd");
+		driver.findElement(By.cssSelector(LOC_SUBMITBTN)).click();
 
 		//Verify that you have logged in.
-		Boolean result = chromedriver.findElement(By.cssSelector(LOC_EDITPROFILELINK)).isDisplayed()?true:false;
+		Boolean result = driver.findElement(By.cssSelector(LOC_EDITPROFILELINK)).isDisplayed()?true:false;
 		System.out.println(result);
 		Assert.assertTrue((result==true) ,"User is successfully logged in");
 
@@ -84,10 +101,10 @@ public class LMSTest2 implements BaseHelper{
 	public void navigateAndverifyNumberOfCourses() {
 
 		//Navigate to the “All Courses” page
-		chromedriver.findElement(By.cssSelector(LOC_ALLCOURSESTAB)).click();
+		driver.findElement(By.cssSelector(LOC_ALLCOURSESTAB)).click();
 
 		//Get the number of rows
-		List<WebElement> list = chromedriver.findElements(By.cssSelector(GETNUMROWSLINK));
+		List<WebElement> list = driver.findElements(By.cssSelector(GETNUMROWSLINK));
 
 
 		//count the number of courses.
@@ -104,23 +121,23 @@ public class LMSTest2 implements BaseHelper{
 	public void navigateToContactUsAndCompleteForm() {
 
 		//Navigate to the “Contact Us” page
-		chromedriver.findElement(By.cssSelector(LOC_CONTACTUSTAB)).click();
+		driver.findElement(By.cssSelector(LOC_CONTACTUSTAB)).click();
 
 		//Complete the form
-		chromedriver.findElement(By.cssSelector(LOC_FULLNAME)).sendKeys("testfullname");
-		chromedriver.findElement(By.cssSelector(LOC_EMAIL)).sendKeys("test@test.com");
-		chromedriver.findElement(By.cssSelector(LOC_SUBJECT)).sendKeys("testsubject");
-		chromedriver.findElement(By.cssSelector(LOC_MESSAGE)).sendKeys("testmessage");
-		chromedriver.findElement(By.cssSelector(LOC_SENDMESSAGEBTN)).click();
+		driver.findElement(By.cssSelector(LOC_FULLNAME)).sendKeys("testfullname");
+		driver.findElement(By.cssSelector(LOC_EMAIL)).sendKeys("test@test.com");
+		driver.findElement(By.cssSelector(LOC_SUBJECT)).sendKeys("testsubject");
+		driver.findElement(By.cssSelector(LOC_MESSAGE)).sendKeys("testmessage");
+		driver.findElement(By.cssSelector(LOC_SENDMESSAGEBTN)).click();
 
 		//Read and print the message displayed after submission
 
-		String printmsg = chromedriver.findElement(By.cssSelector(LOC_SUBMITMSG)).getText();
+		String printmsg = driver.findElement(By.cssSelector(LOC_SUBMITMSG)).getText();
 		System.out.println("message complete form : " +printmsg);
 		wdwait.until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector(LOC_SUBMITMSG), "Thanks for contacting us! We will be in touch with you shortly."));
 
 
-		Boolean result = chromedriver.findElement(By.cssSelector(LOC_SUBMITMSG)).isDisplayed()?true:false;
+		Boolean result = driver.findElement(By.cssSelector(LOC_SUBMITMSG)).isDisplayed()?true:false;
 		System.out.println(result);
 		Assert.assertTrue((result == true) , "Message after successful submission is displayed");
 	}
@@ -134,20 +151,20 @@ public class LMSTest2 implements BaseHelper{
 
 
 		//Select the menu item that says “All Courses” and click it.
-		chromedriver.findElement(By.cssSelector(LOC_ALLCOURSESTAB)).click();
+		driver.findElement(By.cssSelector(LOC_ALLCOURSESTAB)).click();
 
 		wdwait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(LOC_SECONDlESSON)));
 
-		System.out.println("status : "+chromedriver.findElement(By.cssSelector(LOC_SECONDlESSON)).getText());
+		System.out.println("status : "+driver.findElement(By.cssSelector(LOC_SECONDlESSON)).getText());
 
 		//Navigate to a particular lesson
-		Boolean result = chromedriver.findElement(By.cssSelector(LOC_SECONDlESSON)).getText().equals("Enrolled")?true:false;
+		Boolean result = driver.findElement(By.cssSelector(LOC_SECONDlESSON)).getText().equals("Enrolled")?true:false;
 		System.out.println(result);
 		Assert.assertTrue((result == true) , "The chosen lesson is completed.No action required");
 	}
 
 	@AfterTest
 	public void closeBrowser() {
-		chromedriver.quit();
+		driver.quit();
 	}
 }

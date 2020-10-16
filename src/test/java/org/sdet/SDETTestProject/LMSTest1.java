@@ -3,6 +3,10 @@ package org.sdet.SDETTestProject;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxBinary;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -12,7 +16,7 @@ import org.testng.annotations.Test;
 import helpers.BaseHelper;
 
 public class LMSTest1 implements BaseHelper{
-	
+
 	String toMatch;
 
 	//Locators
@@ -20,11 +24,23 @@ public class LMSTest1 implements BaseHelper{
 	public static final String LOC_FIRSTINFOBOXTITLE = "#uagb-infobox-f08ebab0-fbf1-40ec-9b2a-c9feeb3d4810 > div > div > div > div.uagb-ifb-title-wrap > h3";
 	public static final String LOC_TITLESECONDMOSTPOPULARCOURSE = "div[class^='ld_course_grid']:nth-child(2) div.caption h3.entry-title";
 
+		public WebDriver driver;
+	public FirefoxBinary firefoxBinary;
+	public FirefoxOptions firefoxOptions;
 
 	@BeforeTest
 	public void openBrowser() {
-		System.setProperty("webdriver.chrome.driver", "/var/lib/jenkins/workspace/Freestyle - Arnab/ws/chromedriver.exe");
-		chromedriver.navigate().to(URL);
+		/*
+		 * System.setProperty("webdriver.chrome.driver",
+		 * "/var/lib/jenkins/workspace/Freestyle - Arnab/ws/driver.exe");
+		 * driver.navigate().to(URL);
+		 */
+		// Create a new FirefoxDriver. All our test classes will use this.
+		firefoxBinary = new FirefoxBinary();
+		firefoxBinary.addCommandLineOptions("--headless");
+		firefoxOptions = new FirefoxOptions();
+		firefoxOptions.setBinary(firefoxBinary);
+		driver = new FirefoxDriver(firefoxOptions);
 
 	}
 
@@ -35,10 +51,10 @@ public class LMSTest1 implements BaseHelper{
 	public void verifyWebsiteTitle() {
 		toMatch = "Alchemy LMS – An LMS Application";
 
-		System.out.println(chromedriver.getTitle());
+		System.out.println(driver.getTitle());
 
 		//Read the title of the website and verify the text
-		String title = chromedriver.getTitle();
+		String title = driver.getTitle();
 		Boolean result = title.equals(toMatch)?true:false;
 		System.out.println(result);
 		Assert.assertTrue((result == true) ,"website title "+title+" matches the given string");
@@ -50,15 +66,15 @@ public class LMSTest1 implements BaseHelper{
 	public void verifyWebsiteHeading() {
 
 		toMatch = "Learn from Industry Experts";
-		System.out.println(chromedriver.findElement(By.cssSelector(LOC_WEBSITEHEADING)).getText());
+		System.out.println(driver.findElement(By.cssSelector(LOC_WEBSITEHEADING)).getText());
 
 		//Read the heading of the website and verify the text
-		String websiteHeading = chromedriver.findElement(By.cssSelector(LOC_WEBSITEHEADING)).getText();
+		String websiteHeading = driver.findElement(By.cssSelector(LOC_WEBSITEHEADING)).getText();
 		Boolean result = websiteHeading.equals(toMatch)?true:false;
 		System.out.println(result);
 		Assert.assertTrue((result == true) , "Website heading "+websiteHeading+" matches the give string");
 
-		chromedriver.manage().timeouts().implicitlyWait(1000, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(1000, TimeUnit.SECONDS);
 	}
 
 	//3. Verify the title of the first info box
@@ -69,9 +85,9 @@ public class LMSTest1 implements BaseHelper{
 
 		wdwait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(LOC_FIRSTINFOBOXTITLE)));
 
-		System.out.println(chromedriver.findElement(By.cssSelector(LOC_FIRSTINFOBOXTITLE)));
+		System.out.println(driver.findElement(By.cssSelector(LOC_FIRSTINFOBOXTITLE)));
 
-		String infoBoxTitle = chromedriver.findElement(By.cssSelector(LOC_FIRSTINFOBOXTITLE)).getText();
+		String infoBoxTitle = driver.findElement(By.cssSelector(LOC_FIRSTINFOBOXTITLE)).getText();
 
 		//Read the title of the first info box on the website and verify the text
 		Boolean result = infoBoxTitle.equals(toMatch)?true:false;
@@ -85,8 +101,8 @@ public class LMSTest1 implements BaseHelper{
 	public void verifyTitleSecondMostPopularCourse() {
 		toMatch = "Email Marketing Strategies";
 
-		System.out.println("verifyTitleSecondMostPopularCourse: " +chromedriver.findElement(By.cssSelector(LOC_TITLESECONDMOSTPOPULARCOURSE)).getText());
-		String titleSecondMostPopularCourse = chromedriver.findElement(By.cssSelector(LOC_TITLESECONDMOSTPOPULARCOURSE)).getText();
+		System.out.println("verifyTitleSecondMostPopularCourse: " +driver.findElement(By.cssSelector(LOC_TITLESECONDMOSTPOPULARCOURSE)).getText());
+		String titleSecondMostPopularCourse = driver.findElement(By.cssSelector(LOC_TITLESECONDMOSTPOPULARCOURSE)).getText();
 
 		//Read the title of the second most popular course on the website and verify the text
 		Boolean result = titleSecondMostPopularCourse.equals(toMatch)?true:false;
@@ -96,7 +112,7 @@ public class LMSTest1 implements BaseHelper{
 
 	@AfterTest
 	public void closeBrowser() {
-		chromedriver.close();
+		driver.close();
 
 	}
 }
